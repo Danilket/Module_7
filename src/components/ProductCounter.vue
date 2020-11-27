@@ -4,7 +4,7 @@
       >{{ product.price | numberFormat }} ₽
     </b>
 
-    <fieldset class="form__block">
+    <fieldset class="form__block" v-if="productData">
       <legend class="form__legend">Цвет:</legend>
       <ul class="colors">
         <li

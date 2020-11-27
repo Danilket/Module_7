@@ -47,32 +47,35 @@
 </template>
 
 <script>
-import numberFormat from "@/helpers/numberFormat"
-import { mapActions } from 'vuex'
-import axios from 'axios'
-import {API_BASE_URL} from "@/config"
+import numberFormat from '@/helpers/numberFormat';
+import { mapActions } from 'vuex';
+import axios from 'axios';
+import { API_BASE_URL } from '@/config';
 
 export default {
-	filters: {numberFormat},
-	props: ['item'],
-	computed: {
-		amount: {
-			get(){
-				return this.item.amount
-			},
-			set(value){
-				this.$store.dispatch('updateCartProductAmount', {productId: this.item.productId, amount: value})
-			}
-		},
-	},
-	methods: {
-    		// ...mapMutations({deleteProduct: 'deleteCartProduct'}),
-    ...mapActions(['deleteProductFromCart']),
-    deleteProduct(){
-      console.log(this.item.productId);
-      this.deleteProductFromCart({productId: this.item.productId})
+  filters: { numberFormat },
+  props: ['item'],
+  computed: {
+    amount: {
+      get() {
+        return this.item.amount;
+      },
+      set(value) {
+        this.$store.dispatch('updateCartProductAmount', {
+          productId: this.item.productId,
+          amount: value,
+        });
+      },
     },
-		countPlus() {
+  },
+  methods: {
+    // ...mapMutations({deleteProduct: 'deleteCartProduct'}),
+    ...mapActions(['deleteProductFromCart']),
+    deleteProduct() {
+      // console.log(this.item.productId);
+      this.deleteProductFromCart(this.item.productId);
+    },
+    countPlus() {
       this.amount++;
     },
     countMinus() {
@@ -80,7 +83,6 @@ export default {
         this.amount--;
       }
     },
-	}
-
-}
+  },
+};
 </script>
